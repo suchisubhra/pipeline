@@ -5,6 +5,7 @@ driver:
 driver_config:
   network:
     - ["forwarded_port", {guest: 8080, host: 8080}]
+    - ["private_network", {ip: "33.33.33.10"}]
   customize:
     memory: 2048
     cpus: 2
@@ -21,25 +22,25 @@ platforms:
     run_list:
       - recipe[yum]
 
+  - name: centos-7.0
+    run_list:
+      - recipe[yum]
+
 suites:
   - name: jenkins
     run_list:
       - recipe[git]
       - recipe[build-essential]
       - recipe[emacs]
-      - recipe[resolver]
       - recipe[pipeline::jenkins]
-      - recipe[chef-zero]
+      # - recipe[chef-zero]
       - recipe[pipeline::knife]
       - recipe[pipeline::berkshelf]
       - recipe[pipeline::lint_test]
       - recipe[pipeline::cookbooks]
     attributes:
-      chef-zero:
-        start: true
+      # chef-zero:
+      #   start: true
       build-essential:
         compile_time: true
-      resolver:
-        nameservers:
-          - '8.8.8.8'
-          - '8.8.4.4'
+

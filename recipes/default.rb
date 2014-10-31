@@ -21,12 +21,9 @@
 # limitations under the License.
 #
 
-%w[
-  pipeline::jenkins
-  chef-zero
-  pipeline::knife
-  pipeline::berkshelf
-].each { |recipe_name| include_recipe recipe_name }
+%w{
+  # see .kitchen.yml for usage
+}.each { |recipe_name| include_recipe recipe_name }
 
 
 

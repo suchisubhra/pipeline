@@ -23,23 +23,27 @@ directory "#{node['jenkins']['master']['home']}/.chef" do
   mode 0755
 end
 
-cookbook_file "#{node['jenkins']['master']['home']}/.chef/pipeline.pem" do
-  source "pipeline.pem"
-  owner node['jenkins']['master']['user']
-  group node['jenkins']['master']['group']
-  mode 0644
-  action :create
-end
+# search data bag chef_orgs for each chef server or org
+# write out knife and pem
+search(:chef_orgs, "*:*").each do |org|
+  template "#{node['jenkins']['master']['home']}/.chef/knife.rb" do
+    cookbook 'pipeline'
+    source "knife.rb.erb"
+    owner node['jenkins']['master']['user']
+    group node['jenkins']['master']['group']
+    mode 0644
+    variables(
+      :chef_server_url => org['chef_server_url'],
+      :client_node_name => org['client']
+    )
+  end
 
-template "#{node['jenkins']['master']['home']}/.chef/knife.rb" do
-  source "knife.rb.erb"
-  owner node['jenkins']['master']['user']
-  group node['jenkins']['master']['group']
-  mode 0644
-  variables(
-    :chef_server_url => node['pipeline']['chef_server']['url'],
-    :client_node_name => node['pipeline']['chef_server']['node_name'],
-  )
+  file "#{node['jenkins']['master']['home']}/.chef/#{org['client']}.pem" do
+    content org['pem']
+    owner node['jenkins']['master']['user']
+    group node['jenkins']['master']['group']
+    mode 0644
+  end   
 end
 
 

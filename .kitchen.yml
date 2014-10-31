@@ -30,18 +30,17 @@ platforms:
 suites:
   - name: jenkins
     run_list:
-      - recipe[git]
-      - recipe[build-essential]
       - recipe[emacs]
+      - recipe[resolver]
       - recipe[pipeline::jenkins]
-      # - recipe[chef-zero]
+      - recipe[chef-zero]
+      - recipe[pipeline::chefdk]
       - recipe[pipeline::knife]
-      - recipe[pipeline::berkshelf]
-      - recipe[pipeline::lint_test]
-      - recipe[pipeline::cookbooks]
+      - recipe[pipeline::jobs]
     attributes:
-      # chef-zero:
-      #   start: true
-      build-essential:
-        compile_time: true
-
+      chef-zero:
+        start: true
+      resolver:
+        nameservers:
+          - 8.8.8.8
+          - 8.8.4.4

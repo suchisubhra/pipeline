@@ -1,4 +1,4 @@
-require 'berkshelf'
+
 
 # set up chef-repo job per chef-repo
 search(:chef_orgs, "*:*").each do |org|
@@ -20,6 +20,8 @@ search(:chef_orgs, "*:*").each do |org|
     end
     
     begin
+      require 'berkshelf'
+      
       berksfile = Berkshelf::Berksfile.from_file("#{node['jenkins']['master']['home']}/jobs/#{repo['name']}/workspace/Berksfile")
       
       Chef::Log.info("running install on Berksfile...")

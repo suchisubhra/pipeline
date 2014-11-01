@@ -1,4 +1,4 @@
-export PATH="/opt/chef/embedded/bin:$PATH"
+export PATH="/opt/chefdk/embedded/bin:$PATH"
 
 if [ -f Berksfile.lock ];
   then
@@ -7,6 +7,5 @@ if [ -f Berksfile.lock ];
     berks install
 fi
 
-rubocop
 foodcritic -f correctness .
 berks upload

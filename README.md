@@ -46,7 +46,7 @@ From the command line, run the following twice:
 
 `kitchen converge cent`
 
-Now check out your local CD pipeline demo on localhost:8080
+Now check out your local CD pipeline demo on http://localhost:9090
 
 
 ### Production Notes

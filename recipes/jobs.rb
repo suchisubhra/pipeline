@@ -15,7 +15,7 @@ search(:chef_orgs, "*:*").each do |org|
     end
 
     # Create a jenkins job (default action is `:create`)
-    jenkins_job "#{repo['name']}" do
+    jenkins_job repo['name'] do
       config xml
     end
     
@@ -45,7 +45,7 @@ search(:chef_orgs, "*:*").each do |org|
         end
 
         # Create a jenkins job (default action is `:create`)
-        jenkins_job "#{cookbook.name}" do
+        jenkins_job cookbook.name do
           config xml
         end
       end

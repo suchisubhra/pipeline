@@ -28,7 +28,7 @@ platforms:
       - recipe[yum]
 
 suites:
-  - name: jenkins
+  - name: pipeline
     run_list:
       - recipe[emacs]
       - recipe[resolver]

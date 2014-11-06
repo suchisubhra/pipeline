@@ -20,6 +20,14 @@
 
 
 # manage ssl errors if needed or on proxy
+
+# create berkshelf
+directory "#{node['jenkins']['master']['home']}/.berkshelf" do
+  owner node['jenkins']['master']['user']
+  group node['jenkins']['master']['group']
+  mode 0755
+end
+
 file "#{node['jenkins']['master']['home']}/.berkshelf/config.json" do
  content <<-EOD
    {"ssl":{"verify": false }}

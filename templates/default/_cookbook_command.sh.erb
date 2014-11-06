@@ -7,5 +7,6 @@ if [ -f Berksfile.lock ];
     berks install
 fi
 
-foodcritic -f correctness .
+# foodcritic -f correctness .
+foodcritic -f any -f ~FC014 .
 berks upload

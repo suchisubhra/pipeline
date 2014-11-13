@@ -20,3 +20,5 @@ default['pipeline']['proxy']['port'] = "8080"
 default['pipeline']['github']['server'] = "github.com"
 
 default['java']['jdk_version'] = '7'
+
+default['pipeline']['chefdk']['version'] = 'latest'

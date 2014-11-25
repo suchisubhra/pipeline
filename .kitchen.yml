@@ -37,6 +37,7 @@ suites:
       - recipe[chef-zero]
       - recipe[pipeline::knife]
       - recipe[pipeline::jobs]
+      - recipe[pipeline::kitchen]
     attributes:
       chef-zero:
         start: true

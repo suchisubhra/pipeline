@@ -6,12 +6,12 @@ include_recipe "build-essential"
 
 execute "chef gem install kitchen-ec2"
 
-file "#{node['jenkins']['master']['home']}/.kitchen/config.yml" do
-  content <<-EOD
----
-driver:
-  name: digitalocean
-  EOD
-  owner node['jenkins']['master']['user']
-  group node['jenkins']['master']['user']
-end
+# file "#{node['jenkins']['master']['home']}/.kitchen/config.yml" do
+#   content <<-EOD
+# ---
+# driver:
+#   name: ec2
+#   EOD
+#   owner node['jenkins']['master']['user']
+#   group node['jenkins']['master']['user']
+# end

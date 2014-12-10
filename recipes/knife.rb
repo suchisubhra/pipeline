@@ -28,7 +28,7 @@ end
 if Chef::Config[:solo]
   Chef::Log.warn("This recipe uses search. Chef Solo does not support search.")
 else
-  search(:chef_orgs, "*:*").each do |org|
+  node['jenkins']['chef_servers'].each do |org|
     template "#{node['jenkins']['master']['home']}/.chef/knife.rb" do
       cookbook 'pipeline'
       source "knife.rb.erb"

@@ -44,7 +44,7 @@ Note that there is a dependency between the chef-client and a Jenkins job.  The 
 ### Try it!
 From the command line, run the following twice:
 
-`kitchen converge cent`
+`kitchen converge centos-7`
 
 Now check out your local CD pipeline demo on http://localhost:9090
 
